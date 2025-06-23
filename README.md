@@ -41,17 +41,19 @@ El uso de una estrategia de control adaptada a la generación renovable reduce e
   - Evaluar la instalación de **baterías eléctricas reales** frente al uso de la masa térmica como almacenamiento pasivo.
 
 ## 📁 Estructura de Carpetas
-📦 HEATING_CONTROLLER
-┣ 📂 assets
-┣ 📂 documentation
-┃ ┗ 📂 graphs
-┃   ┗ 📜 Proyecto_Control_Inteligente.pdf
-┣ 📂 lib
-┣ 📂 models
-┃ ┗ 📜 sldemo_househeat_non_linear.slx
-┣ 📂 optimization
-┣ 📂 scripts
-┗ 📜 README.md
+HEATING_CONTROLLER/
+├── assets/                       # Imágenes del modelo
+├── documentation/               # Documentación general del proyecto
+│   └── graphs/
+│       └── Proyecto_Control_Inteligente.pdf
+├── lib/                         # Biblioteca de bloques o subsistemas (vacía por ahora)
+├── models/                      # Modelo principal de Simulink
+│   └── sldemo_househeat_non_linear.slx
+├── optimization/                # Scripts de optimización
+│   └── particle_optimization.m
+├── scripts/                     # Scripts auxiliares de configuración y datos
+│   └── sldemo_househeat_data.m
+└── README.md                    
 
 ## 📚 Créditos
 
