@@ -1,35 +1,59 @@
-# Optimización de un Controlador PID para Aerotermia
+# Control Inteligente de un Sistema de Calefacción Doméstico con Aerotermia y Energía Solar
 
-## Descripción del Proyecto
+Este repositorio contiene el desarrollo de un proyecto de simulación y control aplicado a una vivienda equipada con sistema de aerotermia y paneles solares fotovoltaicos. El objetivo es analizar y reducir el consumo energético mediante distintas estrategias de control en Simulink.
 
-El objetivo de este proyecto es optimizar el controlador de un sistema físico mediante la implementación o mejora de un controlador PID en un sistema de calefacción por aerotermia. En caso de que el sistema no tenga un controlador PID, se integrará uno nuevo.
+## 📋 Contenido del Proyecto
 
-## Alcance y Restricciones
+El proyecto incluye:
 
-Se trabajará con sistemas no lineales, por lo que no se podrá realizar linealización ni utilizar funciones de transferencia.
+- Un modelo térmico adaptado de una vivienda basado en el ejemplo oficial de Simulink: *Thermal Model of a House*.
+- Definición física del sistema, incluyendo geometría, aislamiento y propiedades térmicas.
+- Implementación de un sistema de calefacción basado en aerotermia (bomba de calor).
+- Incorporación de generación solar (modelo simplificado) utilizando datos de SolarWeb (Fronius).
+- Simulación de distintas estrategias de control:
+  - Controlador **On/Off** clásico (termostato con histéresis).
+  - Controlador **PID** optimizado por algoritmo de *Particle Swarm Optimization* (PSO).
+  - Estrategia **greedy** de autoconsumo solar, utilizando la vivienda como batería térmica.
 
-Se utilizará Simulink / Simscape dentro de MATLAB para el modelado y simulación del sistema.
+## 📈 Principales Resultados
 
-Se evaluará el impacto del controlador PID en el rendimiento del sistema, con el objetivo de mejorar la eficiencia energética y estimar el ahorro de consumo.
+| Estrategia de control                 | Coste energético semanal |
+|--------------------------------------|---------------------------|
+| Termostato On/Off                    | 41,50 €                   |
+| PID                                  | 35,59 €                   |
+| PID + Generación solar               | 21,86 €                   |
+| Greedy + Generación solar            | **18,19 €**               |
 
-## Objetivo Principal
+El uso de una estrategia de control adaptada a la generación renovable reduce el coste energético semanal en más del 55 %.
 
-Determinar cuánto ahorro energético se puede lograr mediante la implementación de un controlador PID en un sistema de aerotermia para calefacción.
+## 🔍 Conclusiones
 
-# Optimization of a PID Controller for Aerothermal Heating
+- El controlador **PID** tiende a saturar debido a la alta inercia térmica del sistema, funcionando de forma similar a un controlador On/Off.
+- La estrategia **greedy** permite aprovechar mejor la energía solar y reduce el coste energético, aunque con una regulación térmica menos precisa.
+- Utilizar la **vivienda como batería térmica** (sobrecalentándola durante horas de sol) es una solución viable cuando los precios de venta de energía a red son bajos.
 
-## Project Description
+## 🚀 Líneas Futuras de Desarrollo
 
-The objective of this project is to optimize the controller of a physical system by implementing or improving a PID controller in an aerothermal heating system. If the system does not have a PID controller, a new one will be integrated.
+- Sustituir el controlador PID por un **controlador predictivo (MPC)** que considere dinámicas futuras, restricciones y precios de energía.
+- Incorporar un **modelo de modulación del COP** en función de la temperatura exterior.
+- Realizar un análisis coste-beneficio para:
+  - Ampliar la capacidad de generación solar.
+  - Evaluar la instalación de **baterías eléctricas reales** frente al uso de la masa térmica como almacenamiento pasivo.
 
-## Scope and Constraints
+## 📁 Estructura de Carpetas
+📦 HEATING_CONTROLLER
+┣ 📂 assets
+┣ 📂 documentation
+┃ ┗ 📂 graphs
+┃   ┗ 📜 Proyecto_Control_Inteligente.pdf
+┣ 📂 lib
+┣ 📂 models
+┃ ┗ 📜 sldemo_househeat_non_linear.slx
+┣ 📂 optimization
+┣ 📂 scripts
+┗ 📜 README.md
 
-The project will work with nonlinear systems, meaning that linearization and transfer functions cannot be used.
+## 📚 Créditos
 
-Simulink / Simscape within MATLAB will be used for system modeling and simulation.
-
-The impact of the PID controller on system performance will be evaluated to improve energy efficiency and estimate energy savings.
-
-## Main Objective
-
-Determine how much energy savings can be achieved by implementing a PID controller in an aerothermal heating system.
+- Modelo base: [Simulink Thermal Model of a House](https://www.mathworks.com/help/simulink/slref/thermal-model-of-a-house.html)
+- Datos solares: Plataforma [SolarWeb de Fronius](https://www.solarweb.com/)

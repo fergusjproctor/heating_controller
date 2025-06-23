@@ -10,7 +10,7 @@ widHouse = 9;   % m
 htHouse = 6;    % m
 
 % Window configuration
-numWindows = 6;
+numWindows = 4;
 htWindows = 1.2; % m
 widWindows = 2;  % m
 windowArea = numWindows * htWindows * widWindows; % m²
@@ -29,7 +29,7 @@ roofArea = lenHouse * widHouse; % m²
 
 % Brick layer
 L_brick = 0.125; % m
-k_brick = 0.72;  % W/m·K
+k_brick = 0.25;  % W/m·K
 R_brick = L_brick / k_brick; % K·m²/W
 
 % Air gap
@@ -37,9 +37,15 @@ L_air = 0.05; % m
 k_air = 0.026; % W/m·K
 R_airgap = L_air / k_air; % K·m²/W
 
-% Total wall R per m²
-R_wall_per_m2 = 2 * R_brick + R_airgap;
-U_wall = 1 / R_wall_per_m2; % W/m²K
+% Add insulation layer
+L_insul = 0.05; % m
+k_insul = 0.04; % W/m·K
+R_insul = L_insul / k_insul;
+
+% New total R
+R_wall_per_m2 = 2*R_brick + R_airgap + R_insul;
+U_wall = 1 / R_wall_per_m2;
+
 
 % Windows (single glazing)
 U_window = 5.5; % W/m²K
@@ -92,9 +98,17 @@ TinIC = 20; % °C (initial indoor temperature)
 % Constants for radiation (optional nonlinear effects)
 % -------------------------------
 sigma = 5.670374419e-8;  % W/m²·K^4 (Stefan-Boltzmann)
-epsilon = 0.9;           % surface emissivity
+epsilon = 0.85;           % surface emissivity
 
 % -------------------------------
 % Optional: sensitivity of resistance to temperature (nonlinear effects)
 % -------------------------------
 alpha = 0.01; % (dimensionless modifier)
+
+
+%% parámetros control
+
+
+Kp=6565.3295;
+Ki= 680.0419;
+Kd= 0;
